@@ -19,10 +19,10 @@ resource "azurerm_virtual_network" "main" {
 }
 
 resource "azurerm_subnet" "internal" {
-  name                 = "internal"
+  name                 = "${var.prefix}-subnet"
   resource_group_name  = azurerm_resource_group.main.name
   virtual_network_name = azurerm_virtual_network.main.name
-  address_prefix       = "10.0.1.0/24"
+  address_prefix       = "10.0.0.0/24"
 }
 
 resource "azurerm_public_ip" "main" {
@@ -38,7 +38,7 @@ resource "azurerm_network_interface" "main" {
   resource_group_name = azurerm_resource_group.main.name
 
   ip_configuration {
-    name                          = "testconfiguration1"
+    name                          = "${var.prefix}-ip-config"
     subnet_id                     = azurerm_subnet.internal.id
     public_ip_address_id          = azurerm_public_ip.main.id
     private_ip_address_allocation = "Dynamic"
@@ -54,11 +54,11 @@ resource "azurerm_network_security_group" "main" {
 resource "azurerm_network_security_rule" "main" {
   name                        = "${var.prefix}-security-rules"
   priority                    = 100
-  direction                   = "Outbound"
+  direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
-  source_port_ranges          = ["22", "25", "80", "122", "161", "1194", "8080", "8443", "9418"]
-  destination_port_range      = "*"
+  destination_port_ranges     = ["22", "25", "80", "122", "443", "8080", "8443", "9418"]
+  source_port_range           = "*"
   source_address_prefix       = "*"
   destination_address_prefix  = "*"
   resource_group_name         = azurerm_resource_group.main.name
@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine" "main" {
   }
 
   storage_os_disk {
-    name              = "myosdisk1"
+    name              = "${var.prefix}-os-storage"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Premium_LRS"
@@ -104,7 +104,7 @@ resource "azurerm_managed_disk" "main" {
   resource_group_name  = azurerm_resource_group.main.name
   storage_account_type = "Premium_LRS"
   create_option        = "Empty"
-  disk_size_gb         = 100
+  disk_size_gb         = 50
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "main" {
