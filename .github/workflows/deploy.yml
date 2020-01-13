@@ -13,7 +13,7 @@ jobs:
         with:
           tf_actions_version: 0.12.19
           tf_actions_subcommand: "init"
-          tf_actions_working_dir: "."
+          tf_actions_working_dir: "ghes"
           tf_actions_comment: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -24,3 +24,4 @@ jobs:
           arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
           arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
+          path: "ghes"
