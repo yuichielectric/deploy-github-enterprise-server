@@ -1,5 +1,7 @@
 name: deploy
-on: push
+on:
+  push:
+    branches: master
 
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
