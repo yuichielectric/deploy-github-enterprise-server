@@ -1,7 +1,5 @@
 name: "Validate terraform file"
-on:
-  push:
-    branches-ignore: master
+on: pull_request
 
 env:
   ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
