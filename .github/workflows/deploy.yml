@@ -1,8 +1,11 @@
 name: deploy
-on:
-  push:
-    branches: master
+on: push
 
+env:
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 jobs:
   terraform-deploy:
     name: deploy
@@ -10,11 +13,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
-      - name: "Terraform Apply"
-        uses: ams0/terraform-apply-for-azure-action@v1
+      - name: "Terraform Init"
+        uses: hashicorp/terraform-github-actions@v0.6.4
         with:
-          arm_client_id: ${{ secrets.ARM_CLIENT_ID }}
-          arm_client_secret: ${{ secrets.ARM_CLIENT_SECRET }}
-          arm_subscription_id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          arm_tenant_id: ${{ secrets.ARM_TENANT_ID }}
-          path: "ghes"
+          tf_actions_version: "latest"
+          tf_actions_subcommand: "init"
