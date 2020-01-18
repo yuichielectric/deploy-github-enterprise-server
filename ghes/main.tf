@@ -85,7 +85,7 @@ resource "azurerm_virtual_machine" "main" {
     publisher = "GitHub"
     offer     = "GitHub-Enterprise"
     sku       = "GitHub-Enterprise"
-    version   = "2.19.4"
+    version   = "2.19.5"
   }
 
   storage_os_disk {
