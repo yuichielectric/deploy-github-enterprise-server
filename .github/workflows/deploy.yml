@@ -1,4 +1,4 @@
-name: deploy
+name: "Deploy GitHub Enterprise Server on Azure"
 on:
   push:
     branches: master
