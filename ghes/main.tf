@@ -7,12 +7,12 @@ variable "prefix" {
 }
 
 terraform {
-    backend "azurerm" {
-        resource_group_name = "terraformbackend-resources"
-        storage_account_name = "terraformbackendstoracct"
-        container_name = "terraformbackend-content"
-        key = "terraform.tfstate"
-    }
+  backend "azurerm" {
+    resource_group_name  = "terraformbackend-resources"
+    storage_account_name = "terraformbackendstoracct"
+    container_name       = "terraformbackend-content"
+    key                  = "terraform.tfstate"
+  }
 }
 
 resource "azurerm_resource_group" "main" {
@@ -97,7 +97,7 @@ resource "azurerm_virtual_machine" "main" {
   }
 
   os_profile {
-    computer_name = "hostname"
+    computer_name  = "hostname"
     admin_username = "testadmin"
     admin_password = "Password1234!"
   }
