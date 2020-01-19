@@ -7,12 +7,12 @@ variable "prefix" {
 }
 
 terraform {
-    backend "azurerm" {
-        resource_group_name = "terraformbackend-resources"
-        storage_account_name = "terraformbackendstoracct"
-        container_name = "terraformbackend-content"
-        key = "terraform.tfstate"
-    }
+  backend "azurerm" {
+    resource_group_name  = "terraformbackend-resources"
+    storage_account_name = "terraformbackendstoracct"
+    container_name       = "terraformbackend-content"
+    key                  = "terraform.tfstate"
+  }
 }
 
 resource "azurerm_resource_group" "main" {
