@@ -22,7 +22,7 @@ $ terraform apply
 
 ### Deploy GitHub Enterprise Server instance from local
 
-Then run the following commands:
+Run the following commands:
 
 ```sh
 $ cd ghes
