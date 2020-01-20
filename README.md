@@ -4,11 +4,15 @@
 
 On this repository, you can install GitHub Enterprise Server with Terraform. To maintain the terraform state, we use Azure Storage.
 
-## Setting up
+## Set up
+
+### Azure authentication
+
+To authenticate Azure from terraform, see [here](https://www.terraform.io/docs/providers/azurerm/guides/azure_cli.html) and configure the authentication in Terraform.
 
 ### Terraform backend
 
-The terraform configuration uses Azur backend to store its state. To initialize Azure backend, run the following commands:
+The terraform configuration uses Azure backend to store its state. To initialize Azure backend, run the following commands:
 
 ```sh
 $ cd azure-storage-blob-backend
@@ -18,14 +22,7 @@ $ terraform apply
 
 ### Deploy GitHub Enterprise Server instance from local
 
-There are four ways to authenticate on Azure:
-
-- [Using Azure CLI](https://www.terraform.io/docs/providers/azurerm/guides/azure_cli.html)
-- [Using Managed Service Identity](https://www.terraform.io/docs/providers/azurerm/guides/managed_service_identity.html)
-- [Using a Service Principal with a Client Certificate](https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_certificate.html)
-- [Using a Service Principal with a Client Secret](https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_secret.html)
-
-Configure the authentication using one of those four methods. Then run the following commands:
+Then run the following commands:
 
 ```sh
 $ cd ghes
