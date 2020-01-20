@@ -3,7 +3,7 @@ provider "azurerm" {
 }
 
 variable "prefix" {
-  type = string
+  type    = string
   default = "ghes"
 }
 
@@ -13,12 +13,12 @@ variable "location" {
 }
 
 variable "ghes-version" {
-  type = string
+  type    = string
   default = "2.19.5"
 }
 
 variable "ssh_public_key" {
-  type = string
+  type    = string
   default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+wAPz1BqEtghow5fc+GoTb6dgXj2NIuQf0nGd6tKM5 yuichielectric@github.com"
 }
 
@@ -119,7 +119,7 @@ resource "azurerm_virtual_machine" "main" {
 
   os_profile_linux_config {
     disable_password_authentication = true
-    ssh_keys = [var.ssh_public_key]
+    ssh_keys                        = [var.ssh_public_key]
   }
 }
 
