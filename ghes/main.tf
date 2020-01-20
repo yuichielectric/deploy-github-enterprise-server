@@ -3,7 +3,23 @@ provider "azurerm" {
 }
 
 variable "prefix" {
+  type    = string
   default = "ghes"
+}
+
+variable "location" {
+  type    = string
+  default = "japaneast"
+}
+
+variable "ghes-version" {
+  type    = string
+  default = "2.19.5"
+}
+
+variable "ssh_public_key" {
+  type    = string
+  default = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+wAPz1BqEtghow5fc+GoTb6dgXj2NIuQf0nGd6tKM5 yuichielectric@github.com"
 }
 
 terraform {
@@ -17,7 +33,7 @@ terraform {
 
 resource "azurerm_resource_group" "main" {
   name     = "${var.prefix}-resources"
-  location = "japaneast"
+  location = var.location
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -85,7 +101,7 @@ resource "azurerm_virtual_machine" "main" {
     publisher = "GitHub"
     offer     = "GitHub-Enterprise"
     sku       = "GitHub-Enterprise"
-    version   = "2.19.5"
+    version   = var.ghes-version
   }
 
   storage_os_disk {
@@ -99,11 +115,14 @@ resource "azurerm_virtual_machine" "main" {
   os_profile {
     computer_name  = "hostname"
     admin_username = "testadmin"
-    admin_password = "Password1234!"
   }
 
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+    ssh_keys {
+      path     = "/home/testadmin/.ssh/authorized_keys"
+      key_data = var.ssh_public_key
+    }
   }
 }
 
