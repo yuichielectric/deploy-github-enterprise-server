@@ -35,7 +35,9 @@ $ terraform apply
 
 ### Deploy GitHub Enterprise Server instance with GitHub Actions
 
-To deploy a new GitHub Enterprise Server instance with GitHub Actions, you need to create a service principal to authenticate on Azure. To create a new service principal, see [here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest).
+To deploy a new GitHub Enterprise Server instance with GitHub Actions, you need to fork this repository first.
+
+Then you need to create a service principal to authenticate on Azure. To create a new service principal, see [here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest).
 
 Then specify the following secrets at your repository's Secrets setting page. You can get all of the following values on creating a service principal.
 
