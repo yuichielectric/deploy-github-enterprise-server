@@ -122,3 +122,7 @@ resource "azurerm_virtual_machine_data_disk_attachment" "main" {
   lun                = "10"
   caching            = "ReadWrite"
 }
+
+output "public_ip" {
+  value = azurerm_public_ip.main.ip_address
+}
