@@ -37,6 +37,13 @@ $ terraform apply
 
 To deploy a new GitHub Enterprise Server instance with GitHub Actions, you need to create a service principal to authenticate on Azure. To create a new service principal, see [here](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?view=azure-cli-latest).
 
-Then specify the secrets at [Secrets setting page](settings/secrets).
+Then specify the following secrets at your repository's Secrets setting page. You can get all of the following values on creating a service principal.
 
-[The deploy job](blob/master/.github/workflows/deploy.yml) will be triggered on push to `master` branch.
+| Secret name         | description     |
+| ------------------- | --------------- |
+| ARM_CLIENT_ID       | Client ID       |
+| ARM_CLIENT_SECRET   | Client secret   |
+| ARM_SUBSCRIPTION_ID | Subscription ID |
+| ARM_TENANT_ID       | Tenant ID       |
+
+[The deploy job](https://github.com/yuichielectric/deploy-github-enterprise-server/blob/master/.github/workflows/deploy.yml) will be triggered on push to `master` branch.
