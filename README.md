@@ -1,6 +1,6 @@
 # Deploying GitHub Enterprise Server to Azure with Terraform
 
-his repository, you can install GitHub Enterprise Server with Terraform. To maintain the terraform state, we use Azure Storage.
+In this repository, you can install GitHub Enterprise Server with Terraform. To maintain the terraform state, we use Azure Storage.
 
 ## Set up
 
