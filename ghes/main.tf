@@ -121,8 +121,3 @@ resource "azurerm_virtual_machine_data_disk_attachment" "main" {
   lun                = "10"
   caching            = "ReadWrite"
 }
-
-output "public_ip" {
-  value       = azurerm_public_ip.main.ip_address
-  description = "The IP address of the GitHub Enterprise Server instance"
-}
