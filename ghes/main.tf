@@ -14,7 +14,7 @@ variable "location" {
 
 variable "ghes-version" {
   type    = string
-  default = "2.19.5"
+  default = "2.20.0"
 }
 
 variable "ssh_public_key" {
